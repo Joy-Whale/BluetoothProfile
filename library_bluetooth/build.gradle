@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion Integer.parseInt("${ANDORID_COMPILE_SDK_VERSION}")
+    buildToolsVersion "${ANDROID_BUILD_TOOL_VERSION}"
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt("${ANDROID_MIN_SDK_VERSION}")
+        targetSdkVersion Integer.parseInt("${ANDROID_TARGET_SDK_VERSION}")
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
