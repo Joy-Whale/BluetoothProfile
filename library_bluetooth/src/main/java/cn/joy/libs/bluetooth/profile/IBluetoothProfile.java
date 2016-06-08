@@ -9,7 +9,7 @@ import android.bluetooth.BluetoothDevice;
  * Time:   16:51
  * **********************
  */
-public interface IBluetoothProfile {
+interface IBluetoothProfile {
 
 	/** 优先级 */
 	int PRIORITY_OFF = 0;

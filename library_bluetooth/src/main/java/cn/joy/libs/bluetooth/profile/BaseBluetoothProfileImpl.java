@@ -14,7 +14,6 @@ import java.util.List;
  * Author: J
  * Date:   2016/5/11
  * Time:   16:58
- * profile的一个通用实现类，普通的profile可以直接使用该类实现相关的功能
  * **********************
  */
 abstract class BaseBluetoothProfileImpl<T extends BluetoothProfile> implements IBluetoothProfile, BluetoothProfile.ServiceListener {

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BluetoothProfileConnect</string>
+
+    <string name="remote_device_format">当前操作的远程设备：%s</string>
 </resources>

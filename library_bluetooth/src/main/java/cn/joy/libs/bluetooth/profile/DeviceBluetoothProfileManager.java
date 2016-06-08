@@ -6,12 +6,13 @@ import android.content.Context;
 import java.util.HashMap;
 import java.util.Map;
 
+import static cn.joy.libs.bluetooth.profile.Profile.*;
+
 /**
  * **********************
  * Author: J
  * Date:   2016/5/11
  * Time:   17:43
- * 蓝牙设备Profile连接
  * **********************
  */
 public class DeviceBluetoothProfileManager {
@@ -23,19 +24,11 @@ public class DeviceBluetoothProfileManager {
 		initProfiles(this.context = context);
 	}
 
-	/**
-	 * 初始化默认配置
-	 * @param context context
-	 */
 	private void initProfiles(Context context) {
-		profileMap.put(Profile.A2dp, new BluetoothA2dpProfile(context));
-		profileMap.put(Profile.Headset, new BluetoothHeadsetProfile(context));
+		profileMap.put(A2dp, new BluetoothA2dpProfile(context));
+		profileMap.put(Headset, new BluetoothHeadsetProfile(context));
 	}
 
-	/**
-	 * 设置需要管理的profile
-	 * @param profiles 蓝牙profiles，see{@link cn.joy.libs.bluetooth.profile.Profile}
-	 */
 	public void setProfiles(Profile... profiles) {
 		profileMap.clear();
 		for (Profile profile : profiles) {

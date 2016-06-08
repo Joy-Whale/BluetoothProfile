@@ -5,7 +5,6 @@ package cn.joy.libs.bluetooth.profile;
  * Author: J
  * Date:   2016/5/11
  * Time:   17:51
- * 蓝牙profile的枚举
  * **********************
  */
 public enum Profile {
@@ -27,11 +26,6 @@ public enum Profile {
 		this.profileClass = profileClass;
 	}
 
-	/**
-	 * 根据当前的profile创建一个蓝牙profile实例
-	 * @param obj 实例化该profile所需要的参数
-	 * @return 一个新的profile实例，如果实例化失败，则为null
-	 */
 	public IBluetoothProfile create(Object... obj) {
 		try {
 			return profileClass.getConstructor(obj.getClass()).newInstance(obj);
