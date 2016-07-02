@@ -1,5 +1,6 @@
 package cn.joy.libs.bluetooth;
 
+import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,10 +24,10 @@ public class BluetoothConnectManager implements BluetoothSppHelper.BluetoothSock
 
 	/** HFP状态改变广播 {@see android.bluetooth.BluetoothHeadset} */
 	private static final String ACTION_HFP_CONNECT_STATE = "android.bluetooth.headset.profile.action.CONNECTION_STATE_CHANGED";
-	private static final String EXTRA_HFP_CONNECT_STATE = "android.bluetooth.profile.extra.STATE";
-	private static final int HPF_STATE_DISCONNECTED = 0;
-	private static final int HPF_STATE_CONNECTED = 2;
-
+	private static final String EXTRA_PROFILE_CONNECT_STATE = "android.bluetooth.profile.extra.STATE";
+	private static final String ACTION_A2DP_CONNECT_STATE = "android.bluetooth.a2dp.profile.action.CONNECTION_STATE_CHANGED";
+	private static final int PROFILE_STATE_DISCONNECTED = 0;
+	private static final int PROFILE_STATE_CONNECTED = 2;
 	private Context context;
 	private DeviceBluetoothProfileManager mProfileManager;
 	private BluetoothSppHelper mSpp;
@@ -53,17 +54,15 @@ public class BluetoothConnectManager implements BluetoothSppHelper.BluetoothSock
 					}
 					break;
 				case ACTION_HFP_CONNECT_STATE:
-					switch (intent.getIntExtra(EXTRA_HFP_CONNECT_STATE, HPF_STATE_DISCONNECTED)) {
-						case HPF_STATE_CONNECTED:
-							if (mCallback != null) {
-								mCallback.onProfileConnectedStateChanged(device, Profile.Headset, true);
-							}
-							break;
-						case HPF_STATE_DISCONNECTED:
-							if (mCallback != null) {
-								mCallback.onProfileConnectedStateChanged(device, Profile.Headset, false);
-							}
-							break;
+				case ACTION_A2DP_CONNECT_STATE:
+					int state = intent.getIntExtra(EXTRA_PROFILE_CONNECT_STATE, PROFILE_STATE_DISCONNECTED);
+					if (state != PROFILE_STATE_DISCONNECTED && state != PROFILE_STATE_CONNECTED) {
+						return;
+					}
+					boolean connect = intent.getIntExtra(EXTRA_PROFILE_CONNECT_STATE, PROFILE_STATE_DISCONNECTED) == PROFILE_STATE_CONNECTED;
+					Profile profile = intent.getAction().equals(ACTION_HFP_CONNECT_STATE) ? Profile.Headset : Profile.A2dp;
+					if (mCallback != null) {
+						mCallback.onProfileConnectedStateChanged(device, profile, connect);
 					}
 					break;
 			}
@@ -101,15 +100,29 @@ public class BluetoothConnectManager implements BluetoothSppHelper.BluetoothSock
 	}
 
 	/**
-	 * 连接设备handset profile
-	 * @param device 远程设备
+	 * 链接Profile
+	 * @param device  远程设备
+	 * @param profile 需要链接的profile
 	 */
-	public void connectHandSet(BluetoothDevice device) {
-		connectProfile(device, Profile.Headset);
-	}
-
 	public void connectProfile(BluetoothDevice device, Profile profile) {
 		mProfileManager.connect(device, profile);
+	}
+
+	/**
+	 * 断开Profile
+	 * @param device  远程设备
+	 * @param profile 需要断开的profile
+	 */
+	public void disconnectProfile(BluetoothDevice device, Profile profile) {
+		mProfileManager.disconnect(device, profile);
+	}
+
+	/**
+	 * 断开所有Profile
+	 * @param device 远程设备
+	 */
+	public void disconnectAllProfile(BluetoothDevice device) {
+		mProfileManager.disconnect(device);
 	}
 
 	/**
@@ -118,6 +131,24 @@ public class BluetoothConnectManager implements BluetoothSppHelper.BluetoothSock
 	 */
 	public void connectSocket(BluetoothDevice device) {
 		mSpp.connect(device);
+	}
+
+	/**
+	 * 断开socket
+	 */
+	public void disconnectSocket() {
+		mSpp.stop();
+	}
+
+	public void sendMessage(String msg) {
+		mSpp.write(msg);
+	}
+
+	/**
+	 * 启动socket服务，服务端使用
+	 */
+	public void startSocket() {
+		mSpp.start();
 	}
 
 	/**

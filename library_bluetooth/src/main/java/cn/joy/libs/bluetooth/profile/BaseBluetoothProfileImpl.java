@@ -22,7 +22,7 @@ abstract class BaseBluetoothProfileImpl<T extends BluetoothProfile> implements I
 	private T mProxy;
 	private BluetoothProfileReflect mReflect;
 
-	public BaseBluetoothProfileImpl(Context context) {
+	 BaseBluetoothProfileImpl(Context context) {
 		this.context = context;
 		BluetoothAdapter.getDefaultAdapter().getProfileProxy(context, this, getProfileCode());
 	}

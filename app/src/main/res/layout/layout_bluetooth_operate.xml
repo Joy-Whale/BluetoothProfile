@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/remote_name"
+        style="@style/Widget.Text.Default"
+        android:text="@string/remote_device_format"
+        />
+
+    <RelativeLayout
+        android:id="@+id/remote_profile_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/remote_handset"
+            style="@style/Widget.Text.Default"
+            android:text="@string/remote_profile_handset"
+            />
+
+        <Button
+            android:id="@+id/remote_profile_handset_conn"
+            style="@style/Widget.Button.Default"
+            android:layout_alignBottom="@+id/remote_handset"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/remote_handset"
+            android:text="@string/remote_profile_connect"
+            />
+
+        <TextView
+            android:id="@+id/remote_a2dp"
+            style="@style/Widget.Text.Default"
+            android:layout_below="@+id/remote_handset"
+            android:text="@string/remote_profile_a2dp"
+            />
+
+        <Button
+            android:id="@+id/remote_profile_a2dp_conn"
+            style="@style/Widget.Button.Default"
+            android:layout_alignBottom="@+id/remote_a2dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/remote_a2dp"
+            android:text="@string/remote_profile_connect"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/remote_socket_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/remote_socket"
+            style="@style/Widget.Text.Default"
+            android:text="@string/remote_socket"
+            />
+
+        <Button
+            android:id="@+id/remote_socket_conn"
+            style="@style/Widget.Button.Default"
+            android:layout_alignBottom="@+id/remote_socket"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/remote_socket"
+            android:text="@string/remote_profile_connect"
+            />
+
+        <EditText
+            android:id="@+id/remote_socket_input"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/remote_socket"
+            android:layout_toLeftOf="@+id/remote_socket_send"
+            android:maxLength="1"
+            />
+
+        <Button
+            android:id="@+id/remote_socket_send"
+            style="@style/Widget.Button.Default"
+            android:layout_alignBottom="@+id/remote_socket_input"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/remote_socket_input"
+            android:text="@string/remote_socket_send"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/remote_socket_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/remote_socket_input"
+            />
+    </RelativeLayout>
+</LinearLayout>

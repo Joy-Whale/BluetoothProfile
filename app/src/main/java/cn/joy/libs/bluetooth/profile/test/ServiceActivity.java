@@ -1,6 +1,10 @@
 package cn.joy.libs.bluetooth.profile.test;
 
-import android.app.Activity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * **********************
@@ -9,4 +13,21 @@ import android.app.Activity;
  * Time:   12:16
  * **********************
  */
-public class ServiceActivity extends Activity{}
+public class ServiceActivity extends AppCompatActivity {
+
+	@BindView(R.id.bluetooth_view)
+	BluetoothBaseView mBluetoothView;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_bluetooth);
+		ButterKnife.bind(this);
+		mBluetoothView.post(new Runnable() {
+			@Override
+			public void run() {
+				mBluetoothView.asService();
+			}
+		});
+	}
+}

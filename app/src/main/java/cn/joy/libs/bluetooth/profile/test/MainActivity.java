@@ -1,9 +1,13 @@
 package cn.joy.libs.bluetooth.profile.test;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * **********************
@@ -12,23 +16,22 @@ import android.view.View.OnClickListener;
  * Time:   12:36
  * **********************
  */
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		findViewById(R.id.main_btn_client).setOnClickListener(this);
-		findViewById(R.id.main_btn_service).setOnClickListener(this);
+		ButterKnife.bind(this);
 	}
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-			case R.id.main_btn_client:
-				break;
-			case R.id.main_btn_service:
-				break;
-		}
+	@OnClick(R.id.main_btn_service)
+	void asService() {
+		startActivity(new Intent(this, ServiceActivity.class));
+	}
+
+	@OnClick(R.id.main_btn_client)
+	void asClient() {
+		startActivity(new Intent(this, ClientActivity.class));
 	}
 }

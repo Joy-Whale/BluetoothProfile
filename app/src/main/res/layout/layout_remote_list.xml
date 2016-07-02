@@ -4,12 +4,9 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/remote_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/remote_device_format"
-        android:padding="5dp"
-        />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

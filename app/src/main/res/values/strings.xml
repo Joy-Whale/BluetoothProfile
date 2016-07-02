@@ -2,4 +2,22 @@
     <string name="app_name">BluetoothProfileConnect</string>
 
     <string name="remote_device_format">当前操作的远程设备：%s</string>
+    <string name="remote_device_found">搜索</string>
+    <string name="remote_device_connect_title">点击连接设备</string>
+    <string name="remote_profile_handset">Handset Profile: %s</string>
+    <string name="remote_profile_a2dp">A2DP Profile: %s</string>
+    <string name="remote_profile_connect">连接</string>
+    <string name="remote_profile_disconnect">断开</string>
+    <string name="remote_profile_connected">已连接</string>
+    <string name="remote_profile_disconnected">未连接</string>
+
+    <string name="remote_socket">Socket: %s</string>
+    <string name="remote_socket_send">发送</string>
+    <string name="remote_socket_send_empty">发送内容不能为空</string>
+    <string name="remote_socket_send_success">发送成功</string>
+    <string name="remote_connect_format">正在连接%s</string>
+
+
+    <string name="label_service">服务端</string>
+    <string name="label_client">客户端</string>
 </resources>
